@@ -1,0 +1,12 @@
+﻿{
+  "$schema": "C:/TwinCAT/Functions/TE2000-HMI-Engineering/Infrastructure/TcHmiFramework/Latest/Schema/LocalizationDescription.Schema.json",
+  "locale": "en-US",
+  "localizedText": {
+    "L_SendMessage": "Send message",
+    "L_Language": "Language",
+    "L_Active": "Active Alarms",
+    "L_AllEvents": "All Events",
+    "L_ClearAlarm": "Clear Alarm",
+    "L_RaiseAlarm": "Raise alarm"
+  }
+}
