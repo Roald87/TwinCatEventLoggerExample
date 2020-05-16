@@ -1,0 +1,22 @@
+//	fbAlarm.CreateEx(TC_Events.MyEvents.Stop, TRUE, 0);
+	
+//	fbSourceInfo.Clear();
+//	fbSourceInfo.sName := 'Water pump 3'; 
+//	fbCritical.CreateEx(TC_EVENTS.MyEvents.Panic, TRUE, fbSourceInfo);
+
+//IF bAlarm THEN
+//	bAlarm := FALSE;
+//	fbAlarm.Raise(0);
+//END_IF
+
+//IF bClearAlarm THEN
+//	bClearAlarm := FALSE;
+//	fbAlarm.Clear(0, TRUE);
+//END_IF
+
+
+
+//IF bCritical THEN
+//	bCritical := FALSE;
+//	fbCritical.Raise(0);
+//END_IF
