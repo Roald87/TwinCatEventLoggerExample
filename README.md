@@ -1,32 +1,32 @@
 # TwinCAT EventLogger: PLC part
 
-Keeping track of all the things which are happening on your machine can be a daunting task. Whether it’s expected events or unexpected warnings and errors of which you want to inform the user. Luckily Beckhoff provides us with a tool which can help with that, namely the EventLogger. In this article I will introduce the PLC part of the EventLogger and show some useful features (code: [PlcPart](https://github.com/Roald87/TwinCatEventLoggerExample/tree/master/PlcPart)). A second article will show how to visualize the events using TwinCAT’s web-based HMI (TE2000) (code: [HmiPart](https://github.com/Roald87/TwinCatEventLoggerExample/tree/master/HmiPart)). 
+Keeping track of all the things which are happening on your machine can be a daunting task. Whether it’s expected events or unexpected warnings and errors of which you want to inform the user. Luckily Beckhoff provides us with a tool which can help with that, namely the EventLogger. In this article I will introduce the PLC part of the EventLogger and show some useful features (code: [PlcPart](PlcPart/)). A second article will show how to visualize the events using TwinCAT’s web-based HMI (TE2000) (code: [HmiPart](HmiPart/)). 
 
 Thanks to [Jakob Sagatowski ](https://github.com/sagatowski) for his valuable feedback while writing this article.
 
 Events are created on the PLC and are organized in EventClasses, as shown in the image below. The events themselves can be of two different types. First there is the stateless message type which can only be sent. Second there is the alarm which also has a state. The states of the alarms work as follows. There are two mutually exclusive states: raised and cleared and an optional third state: confirmed which is independent of the first two. The raised and cleared state are used to indicate if an alarm condition is fulfilled (e.g. a temperature is above a certain limit). The optional confirmation state can be used to indicate that the user has seen the alarm and is aware of it. Finally all raised alarms are automatically cleared when the PLC is restarted, but they are not automatically confirmed.
 
-![event_logger_structure](img\event_logger_structure.png)
+![event_logger_structure](img/event_logger_structure.png)
 
 A limited number of past events are cached in a local database file on the harddrive in `C:\TwinCAT\3.1\Boot\LoggedEvents.db`. The maximum number of logged events is set to 1000 by default and can be changed under **Tools > Options > TwinCAT XAE Environment > EventLogger**, as shown below. This database is not cleared when you restart the PLC, so you can view past events. For more details on the EventLogger there is an extensive [manual](https://download.beckhoff.com/download/Document/automation/twincat3/TC3_EventLogger_EN.pdf) available and InfoSys has a few [tutorials and examples](https://infosys.beckhoff.com/content/1033/tc3_eventlogger/27021602043327883.html?id=2784076848234793699). 
 
-![cached_events_setting](img\cached_events_setting.PNG)
+![cached_events_setting](img/cached_events_setting.PNG)
 
 Now we know a little about the theory behind events, let's look at an example. You can download the example project from the [PlcPart](https://github.com/Roald87/TwinCatEventLoggerExample/tree/master/PlcPart) folder. I’ve created a standard TwinCAT XAE project with a standard PLC project. I then added the **Tc3_EventLogger** library under **References** as shown in the image below. This library contains all the function blocks we need for the events.
 
-![twincat_project_structure](img\twincat_project_structure.PNG)
+![twincat_project_structure](img/twincat_project_structure.PNG)
 
 Before we start sending messages and raising events we’ll create a new [EventClass](https://infosys.beckhoff.com/content/1033/tc3_eventlogger/9007204107498251.html?id=4886737213905623273). In an event class, a number of related events can be organized. Of course you can also use the standard TwinCAT events (e.g. TcSystemEventClass as shown below), but those are probably not so relevant for the end user. You can add a new EventClass by going to **SYSTEM > Type System** and then select the tab **Event Classes**, as shown below. Then right click on the empty field to create a new event class.
 
-![create_new_event_class](C:\Users\rruiter\repos\Roald87\TwinCatEventLoggerExample\img\create_new_event_class.PNG)
+![create_new_event_class](img/create_new_event_class.PNG)
 
 A TMC editor window should open. I named the EventClass *MyEvents* and set the display text to *My events*. The name can’t contain spaces and will be used in the event declaration as we will see in a minute. The display text is one of the things which can be shown to the user and can be a general description of the EventClass.
 
-![event_class_details](img\event_class_details.PNG)
+![event_class_details](img/event_class_details.PNG)
 
 Then I renamed the first default [event](https://infosys.beckhoff.com/content/1033/tc3_eventlogger/4852759179.html?id=7440132292714549021) to *Start* and added *Process started* under **Display Text**. Finally I gave this event the severity Info, because it will be used for a message.
 
-![event_details](img\event_details.PNG)
+![event_details](img/event_details.PNG)
 
 We can then start adding to code to send this message. For that we create a program `SendMessage`. In the program declaration we make an instance of [`FB_TcMessage`](https://infosys.beckhoff.com/content/1033/tc3_eventlogger/18014403512523147.html?id=2612337694701808037). This function block will contain all the information regarding our message event. 
 
@@ -80,15 +80,15 @@ END_IF
 
 Now we can activate our configuration. In order to see our events we need to activate the [Logged Events window](https://infosys.beckhoff.com/content/1033/tc3_eventlogger/27021602616987915.html?id=2970470299138771131) which can be found under **View > Other Windows > TwinCAT Logged Events**. This logger shows up to 1000 (as set earlier) past events. Now log into the PLC. You should see something which looks like the image below. If you set `bMessage` to `TRUE` a message should be sent to the event logger. In order to see it in the Logged Events window, refresh the logger using the refresh button on the bottom left in the image. The logger nicely shows an overview of the different parameters of the class name the event is part of, info of the event itself and the time it was sent. 
 
-![first_send_message](img\first_send_message.png)
+![first_send_message](img/first_send_message.png)
 
  From the logged events window it is also possible to remove past events from the database using the button on the right, as shown below. As far as I know, this is the only way to remove old events from the database.
 
-![clear_logged_events](img\clear_logged_events.png)
+![clear_logged_events](img/clear_logged_events.png)
 
 Now let’s add some more code so we can also see the behavior of alarms. First I add a new event to the event class. I give it the name Stop with the severity Warning. For the display text I also added an [argument](https://infosys.beckhoff.com/content/1033/tc3_eventlogger/9007204312656907.html?id=2181748310896520024) `{0}`. Later we can use this to add a custom text to the display text.
 
-![warning_event_with_argument](img\warning_event_with_argument.png)
+![warning_event_with_argument](img/warning_event_with_argument.png)
 
 In order to use this alarm we’ll create a new program `ConfirmableAlarmWithArguments`. First we make an instance, `fbAlarm`, of the [`FB_TcAlarm`](https://infosys.beckhoff.com/content/1033/tc3_eventlogger/18014403511408907.html?id=8336441833469907165) function block in the program declaration. 
 
@@ -178,7 +178,7 @@ END_IF
 
 After activating the configuration you can raise, confirm and clear or clear and confirm the alarm and view the state and times in the Logged events window. You should see something as below. Note that the event text displays the name of the operator who stopped the process.
 
-![event_logger_warning_event_with_argument](img\event_logger_warning_event_with_argument.png)
+![event_logger_warning_event_with_argument](img/event_logger_warning_event_with_argument.png)
 
 ```
 PROGRAM AlarmWithCustomSourceInfo
@@ -254,6 +254,6 @@ END_IF
 
 If we then activate our configuration again and raise and clear the alarm with our custom source information it should look like the image below. Under source name you now see the name we defined earlier with `fbSourceInfo.sName` instead of the program name.
 
-![event_logger_warning_event_with_custom_source](img\event_logger_warning_event_with_custom_source.png)
+![event_logger_warning_event_with_custom_source](img/event_logger_warning_event_with_custom_source.png)
 
 I hope you learned something new today! In a future post I’ll show how to visualize the events in the TwinCAT’s web-based HMI (TE2000).
