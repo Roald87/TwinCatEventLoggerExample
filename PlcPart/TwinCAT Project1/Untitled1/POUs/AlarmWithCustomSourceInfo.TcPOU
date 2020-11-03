@@ -3,7 +3,7 @@
   <POU Name="AlarmWithCustomSourceInfo" Id="{48bcfbe9-7939-4b1e-b88a-806d0f9a8eeb}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM AlarmWithCustomSourceInfo
 VAR
-    bIsInitalized: BOOL;	
+    bIsInitalized : BOOL;
     fbAlarm : FB_TcAlarm;
     bRaiseAlarm : BOOL;
     bClearAlarm : BOOL;

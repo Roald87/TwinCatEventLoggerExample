@@ -3,12 +3,12 @@
   <POU Name="ConfirmableAlarmWithArguments" Id="{df769fb6-64ea-4d28-929a-dc67a3dfc7ea}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM ConfirmableAlarmWithArguments
 VAR
-	bIsInitalized: BOOL;	
-
-	fbAlarm: FB_TcAlarm;
-	bRaiseAlarm: BOOL;
-	bClearAlarm: BOOL;
-	bConfirmAlarm: BOOL;
+    bIsInitalized : BOOL;
+    
+    fbAlarm : FB_TcAlarm;
+    bRaiseAlarm : BOOL;
+    bClearAlarm : BOOL;
+    bConfirmAlarm : BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>

@@ -3,8 +3,8 @@
   <POU Name="SendMessage" Id="{06e84c44-61c3-4613-a1fc-ac00ced37fcb}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM SendMessage
 VAR
-    bIsInitalized: BOOL;	
-    fbMessage: FB_TcMessage;
+    bIsInitalized : BOOL;
+    fbMessage : FB_TcMessage;
     bSendMessage : BOOL;
 END_VAR
 ]]></Declaration>
