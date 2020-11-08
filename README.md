@@ -33,9 +33,9 @@ We can then start adding to code to send this message. For that we create a prog
 ```
 PROGRAM SendMessage
 VAR
-	bIsInitalized : BOOL;  
-	fbMessage : FB_TcMessage;
-	bSendMessage : BOOL;
+    bIsInitalized : BOOL;  
+    fbMessage : FB_TcMessage;
+    bSendMessage : BOOL;
 END_VAR
 ```
 
@@ -43,8 +43,8 @@ Before we can use it, we have to initialize it as shown below. This is done by c
 
 ```
 IF NOT bIsInitalized THEN
-	bIsInitalized := TRUE;
-	fbMessage.CreateEx(TC_Events.MyEvents.Start, 0);
+    bIsInitalized := TRUE;
+    fbMessage.CreateEx(TC_Events.MyEvents.Start, 0);
 END_IF
 ```
 
@@ -52,8 +52,8 @@ Finally in order to send the message we call the [`Send`](https://infosys.beckho
 
 ```
 IF bSendMessage THEN
-	bSendMessage := FALSE;
-	fbMessage.Send(0);
+    bSendMessage := FALSE;
+    fbMessage.Send(0);
 END_IF
 ```
 
@@ -73,7 +73,7 @@ IF NOT bIsInitalized THEN
 END_IF
 
 IF bSendMessage THEN
-	bSendMessage := FALSE;
+    bSendMessage := FALSE;
     fbMessage.Send(0);
 END_IF
 ```
