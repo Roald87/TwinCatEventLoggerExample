@@ -49,10 +49,7 @@
   },
   "trigger": [],
   "actionTemplates": [],
-  "languages": {
-    "de-DE": "Localization\\de-DE.localization",
-    "en-US": "Localization\\en-US.localization"
-  },
+  "languages": {},
   "creatorSettings": {
     "viewport": {
       "defaultWidth": 1024,
