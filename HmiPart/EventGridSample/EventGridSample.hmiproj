@@ -15,7 +15,7 @@
     <HmiFrameworkVersion>Latest</HmiFrameworkVersion>
     <HmiCommunicationServerPort>3002</HmiCommunicationServerPort>
     <HmiInitial>1.10.718.0</HmiInitial>
-    <HmiRecent>1.10.1336.372</HmiRecent>
+    <HmiRecent>1.10.1336.404</HmiRecent>
   </PropertyGroup>
   <PropertyGroup>
     <TwinCATHmi_Tasks>$(TcHmiDirectory)\MSBuild\Beckhoff.TwinCAT.HMI.tasks</TwinCATHmi_Tasks>
@@ -215,22 +215,6 @@
       <Visible>true</Visible>
     </Content>
     <Content Include="Images\Beckhoff_Logo.svg">
-      <SubType>Content</SubType>
-      <Visible>true</Visible>
-    </Content>
-    <Content Include="Localization\de-DE.localization">
-      <SubType>Content</SubType>
-      <Visible>true</Visible>
-    </Content>
-    <Content Include="Localization\de-DE.tpl.localization">
-      <SubType>Content</SubType>
-      <Visible>true</Visible>
-    </Content>
-    <Content Include="Localization\en-US.localization">
-      <SubType>Content</SubType>
-      <Visible>true</Visible>
-    </Content>
-    <Content Include="Localization\en-US.tpl.localization">
       <SubType>Content</SubType>
       <Visible>true</Visible>
     </Content>

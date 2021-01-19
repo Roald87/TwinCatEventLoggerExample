@@ -1745,37 +1745,61 @@
             },
             "USEMAPPING": true
         },
-        "PLC1.MAIN.bAlarm": {
+        "PLC1.AlarmWithCustomSourceInfo.bClearAlarm": {
             "ACCESS": 3,
             "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
-            "HIDDEN": false,
-            "MAPPING": "PLC1::MAIN::bAlarm",
-            "OPTIONS": {},
+            "MAPPING": "PLC1::AlarmWithCustomSourceInfo::bClearAlarm",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
             "USEMAPPING": true
         },
-        "PLC1.MAIN.bClearAlarm": {
+        "PLC1.AlarmWithCustomSourceInfo.bRaiseAlarm": {
             "ACCESS": 3,
             "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
-            "HIDDEN": false,
-            "MAPPING": "PLC1::MAIN::bClearAlarm",
-            "OPTIONS": {},
+            "MAPPING": "PLC1::AlarmWithCustomSourceInfo::bRaiseAlarm",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
             "USEMAPPING": true
         },
-        "PLC1.MAIN.bMessage": {
+        "PLC1.ConfirmableAlarmWithArguments.bClearAlarm": {
             "ACCESS": 3,
             "CUSTOMERDATA": "",
             "DOMAIN": "ADS",
-            "HIDDEN": false,
-            "MAPPING": "PLC1::MAIN::bMessage",
-            "OPTIONS": {},
+            "MAPPING": "PLC1::ConfirmableAlarmWithArguments::bClearAlarm",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.ConfirmableAlarmWithArguments.bConfirmAlarm": {
+            "ACCESS": 3,
+            "CUSTOMERDATA": "",
+            "DOMAIN": "ADS",
+            "MAPPING": "PLC1::ConfirmableAlarmWithArguments::bConfirmAlarm",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.ConfirmableAlarmWithArguments.bRaiseAlarm": {
+            "ACCESS": 3,
+            "CUSTOMERDATA": "",
+            "DOMAIN": "ADS",
+            "MAPPING": "PLC1::ConfirmableAlarmWithArguments::bRaiseAlarm",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/BOOL"
+            },
+            "USEMAPPING": true
+        },
+        "PLC1.SendMessage.bSendMessage": {
+            "ACCESS": 3,
+            "CUSTOMERDATA": "",
+            "DOMAIN": "ADS",
+            "MAPPING": "PLC1::SendMessage::bSendMessage",
             "SCHEMA": {
                 "$ref": "tchmi:general#/definitions/BOOL"
             },
@@ -2732,6 +2756,6 @@
     "VIDEOSEGMENTSIZE": 1048576,
     "VIRTUALDIRECTORIES": {
         "/": "..\\..\\EventGridSample",
-        "/framework": "..\\..\\..\\..\\..\\..\\TwinCAT\\Functions\\TE2000-HMI-Engineering\\Infrastructure\\TcHmiFramework\\1.10.1336.0"
+        "/framework": "..\\..\\..\\..\\..\\..\\..\\..\\TwinCAT\\Functions\\TE2000-HMI-Engineering\\Infrastructure\\TcHmiFramework\\1.10.1336.0"
     }
 }
